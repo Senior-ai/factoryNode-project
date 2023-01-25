@@ -1,0 +1,8 @@
+{ 
+    "actions": [
+        {"id": 1, "maxActions": 5, "date": "1/03/2022", "actionAllowed": 4},
+        {"id": 1, "maxActions": 5, "date": "1/03/2022", "actionAllowed": 3},
+        {"id": 1, "maxActions": 5, "date": "2/03/2022", "actionAllowed": 4}
+    ]
+}
+
