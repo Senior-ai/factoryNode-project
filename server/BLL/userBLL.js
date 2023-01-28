@@ -1,11 +1,17 @@
 const usersWS = require('../DAL/usersWS');
 const actions = require('../DAL/actionsDAL');
 
-const department = require('../models/depModel');
+
 const employee = require('../models/empModel');
 const shift = require('../models/shiftModel');
 const user = require('../models/userModel');
 
+const getAllUsers = () => {
+    return user.find({})
+}
+const getUserById = ({id}) => {
+    return user.findById({id});
+}
 
 const addAction = (id, obj) => {
     actions.addAction(id, obj);
@@ -13,4 +19,4 @@ const addAction = (id, obj) => {
 }
 
 
-module.exports = {authUser, addAction}
+module.exports = {getAllUsers, getUserById}

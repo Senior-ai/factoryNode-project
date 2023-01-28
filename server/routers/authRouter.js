@@ -6,7 +6,7 @@ const router = express.Router();
 // Entry Point: 'http://localhost:8000/auth'
 
 router.route('/login').post((req, res) => {
-  const { username, password } = req.body;
+  const { username, email } = req.body;
 
   // if 'username' and 'password' exist in DB
   if (true) {
