@@ -44,9 +44,13 @@ const root = {
         graphiql: true, // GraphQL interface in the browser
       })
     );
-    
+    //routers
+    app.use('/auth', authRouter);
+
     app.listen(port, () => {
       console.log(
         `Running a GraphQL API server at: http://localhost:${port}/graphql`
       );
     });
+
+   
