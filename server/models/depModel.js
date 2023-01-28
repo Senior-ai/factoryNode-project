@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const departmentSchema = new mongoose.Schema(
   {
-    externalId: Number,
+    _id: Number,
     name: String,
     managerId: Number,
   },

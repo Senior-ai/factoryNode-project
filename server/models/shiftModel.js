@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const shiftSchema = new mongoose.Schema(
   {
-    externalId: Number,
+    _id: Number,
     date: Date,
     startingHour: Number,
     endingHour: Number,

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema(
   {
-    externalId: Number,
+    _id: Number,
     fullName: String,
     numofActions: Number,
   },
