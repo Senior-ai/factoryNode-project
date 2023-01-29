@@ -16,4 +16,4 @@ const addDepartment = async (args) => {
     return 'Created!';
 }
 module.exports = {getAllDepartments, getDepartmentById,
-}
+updateDepartment, addDepartment}
