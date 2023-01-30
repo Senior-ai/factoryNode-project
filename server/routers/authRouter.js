@@ -21,7 +21,7 @@ router.route('/login').post((req, res) => {
     res.json({ accessToken });
   }
 
-  res.status(401); // Unauthorized
+  res.status(401);
 });
 
 module.exports = router;
