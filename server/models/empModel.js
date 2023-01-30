@@ -6,7 +6,7 @@ const empSchema = new mongoose.Schema(
     firstName: String,
     lastName: String,
     startWorkYear: Number,
-    departmentID: Number,
+    departmentID: {type: mongoose.Schema.Types.ObjectId, ref: 'department'},
   },
   { versionKey: false }
 );

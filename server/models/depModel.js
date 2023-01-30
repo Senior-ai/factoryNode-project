@@ -5,7 +5,7 @@ const departmentSchema = new mongoose.Schema(
   {
     _id: Number,
     name: String,
-    managerId: Number,
+    managerId: {type: mongoose.Schema.Types.ObjectId, ref: 'Employee'},
   },
   { versionKey: false }
 );

@@ -13,6 +13,10 @@ const getUserById = ({id}) => {
     return user.findById({id});
 }
 
+const addUser = (args) => {
+
+}
+
 const addAction = (id, obj) => {
     actions.addAction(id, obj);
     return 'Created';
