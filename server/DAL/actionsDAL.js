@@ -11,4 +11,4 @@ const getActions = () => {
     return jsonfile.readFile(file);
 }
 
-module.exports = {getActions, }
+module.exports = {getActions, addAction}
