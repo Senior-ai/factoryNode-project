@@ -5,10 +5,10 @@ const departmentSchema = new mongoose.Schema(
   {
     _id: Number,
     name: String,
-    managerId: {type: mongoose.Schema.Types.ObjectId, ref: 'Employee'},
+    managerId: {type: mongoose.Schema.Types.ObjectId, ref: 'employees'},
   },
   { versionKey: false }
 );
 
-const dep = mongoose.model('department', departmentSchema);
+const dep = mongoose.model('departments', departmentSchema);
 module.exports = dep;
