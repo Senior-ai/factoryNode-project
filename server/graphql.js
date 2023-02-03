@@ -21,23 +21,20 @@ const schema = buildSchema(`
     managerId: Int
   }
   type shift {
-    date: Date,
+    date: String,
     startingHour: Int,
     endingHour: Int,
   }
   type Query {
-    getAllStudents: [Student],
-    getStudent(id: Int): [Student]
-  }
-  type Mutation {
-
+    getAllUsers: [User],
+    getUser(id: Int): [User]
   }
 `);
 
 // The 'root' provides a resolver function for each API endpoint
 const root = {
-getAllstudents: studentsBLL.getAllstudents,
-getStudent: studentsBLL.getStudentById,
+getAllUsers: userBLL.getAllUsers,
+getUser: userBLL.getUserById,
 };
 
 module.exports = {schema, root}
