@@ -3,8 +3,9 @@ const Employee = require('../models/empModel');
 const getAllEmployees = () => {
     return Employee.find({});
 }
-const getEmployeeById = ({id}) => {
-    return Employee.findById({_id: id});
+const getEmployeeById = (args) => {
+    const {id} = args;
+    return Employee.find((emp) => emp.id === id);
 }
 
 const updateEmployee = async (args) => {

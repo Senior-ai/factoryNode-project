@@ -5,7 +5,6 @@
      <!-- Required meta tags -->
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
      <!-- Bootstrap CSS v5.2.1 -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"> 
@@ -24,7 +23,6 @@
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
      </script>
-   
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
      </script>
@@ -62,38 +60,6 @@
         </div>
       </div>
     </section>
-
-    <script>
-       //use the loginData as query params. if the returned obj is [] then,
-      //there are no users with these credentials
-      const loginVerify = async () => {
-        const loginData = {
-          username: document.getElementById('typeUsername').value,
-          email: document.getElementById('typeEmailX').value,
-        };
-
-        let query = Object.keys(loginData)
-        .map(k => encodeURIComponent(k) + '=' +encodeURIComponent(loginData[k]))
-        .join('&');
-      
-        const url = 'https://jsonplaceholder.typicode.com/users?' + query; 
-        var res = await fetch(url);
-        console.log(res);
-        var content = await res.json();
-        
-        //console.log(content[0].email);
-        if (content[0]) //Will return false if the credentials entered do not exist
-        {
-          content[0].accessToken = (); //Generate the accesstoken HERE
-          sessionStorage['accessToken'] = content[0].accessToken; //JWT
-          console.log(content[0].accessToken);
-          //window.location.href = './home.html';
-        }
-        else
-        {
-          //add elemnt which warns that there are incorrect credentials
-        }
-      };
-    </script>
+    <script src="fel/login.js"></script>
   </body>
 </html>

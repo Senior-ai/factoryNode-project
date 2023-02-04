@@ -6,6 +6,7 @@ const departmentSchema = new mongoose.Schema(
     _id: Number,
     name: String,
     managerId: {type: mongoose.Schema.Types.ObjectId, ref: 'employees'},
+    employees: []
   },
   { versionKey: false }
 );

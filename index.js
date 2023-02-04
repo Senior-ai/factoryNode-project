@@ -1,35 +1,25 @@
 const express = require('express'); //TODO - unrelated, but delete getUsers functions - you dont need it as it gets fetched once from jsonplaceholder
 const cors = require('cors');
 
-//graphQL
-const { graphqlHTTP } = require('express-graphql');
-const graphqlVar = require('./server/graphql')
-const root = graphqlVar.root;
-const schema = graphqlVar.schema;
-
+const connectDB = require('./server/configs/db')
 //routers
 const authRouter = require('./server/routers/authRouter');
-
+const depRouter = require("./server/routers/depRouter");
+const shiftsRouter = require('./server/routers/shiftsRouter');
     const app = express();
     const port = 4000;
-    
-    app.use(cors());
-    
-    app.use(
-      '/graphql',
-      graphqlHTTP({
-        schema,
-        rootValue: root,
-        graphiql: true, // GraphQL interface in the browser
-      })
-    );
 
+    connectDB();
+    app.use(cors());
+    app.use(express.json());
+    app.use('/login', authRouter);
+    app.use('/departments', depRouter);
+    app.use('/shifts', shiftsRouter);
     //setting up routers
-    app.use('/auth', authRouter);
 
     app.listen(port, () => {
       console.log(
-        `Running a GraphQL API server at: http://localhost:${port}/graphql`
+        `Running an API server at: http://localhost:${port}/departments`
       );
     });
 
