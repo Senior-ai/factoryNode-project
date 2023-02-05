@@ -1,17 +1,17 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const depBLL = require('../BLL/depBLL')
+const empBLL = require('../BLL/empBLL')
 
 const router = express.Router();
 
-// Entry Point: 'http://localhost:8000/departments/'
+// Entry Point: 'http://localhost:8000/empartments/'
 
 router.route('/').get( async(req, res) => {
     try {
-    const deps = await depBLL.getAllDepartments();
-    console.log(deps);
+    const emps = await empBLL.getAllEmployees()
+    .populate('employee');
     const jwt = req.body;
-    res.json(deps);
+    res.json(emps);
     res.status(200);
     } catch (error) {
         res.json(error);
@@ -19,34 +19,34 @@ router.route('/').get( async(req, res) => {
     
 });
 
-// Get department By ID
+// Get empartment By ID
 router.route('/:id').get(async (req, res) => {
     try {
     const { id } = req.params;
-    const Dep = await depBLL.getDepartmentById(id);
-    res.json(Dep);
+    const emp = await empBLL.getEmployeeById(id);
+    res.json(emp);
   } catch (error) {
     res.json(error);
   }
   });
   
-  // Add a dep
+  // Add a emp
   router.route('/').post(async (req, res) => {
     try {
     const obj = req.body;
-    const result = await depBLL.addDepartment(obj);
+    const result = await empBLL.addEmployee(obj);
     res.json(result);
     } catch (error) {
       res.json(error);
     }
   });
   
-  // Update a dep
+  // Update a emp
   router.route('/:id').put(async (req, res) => {
     try {
     const { id } = req.params;
     const obj = req.body;
-    const result = await depBLL.updateDepartment(id, obj);
+    const result = await empBLL.updateEmployee(id, obj);
     res.json(result);
     } catch (error) {
       res.json(error);
@@ -57,7 +57,7 @@ router.route('/:id').get(async (req, res) => {
   router.route('/:id').delete(async (req, res) => {
     try {
     const { id } = req.params;
-    const result = await depBLL.deleteDepartment(id);
+    const result = await empBLL.deleteEmployee(id);
     res.json(result);
     } catch (error) {
       res.json(error);

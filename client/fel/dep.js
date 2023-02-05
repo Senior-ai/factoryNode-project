@@ -1,10 +1,10 @@
 
-
 document.addEventListener("DOMContentLoaded", () => {
   async function getData() {
     const url = 'http://localhost:4000/departments';
     const resp = await fetch(url);
     const deps = await resp.json();
+    console.log(deps[1].employees);
     const tbody = document.getElementById('tBody');
 
     deps.forEach((dep) => {
@@ -22,9 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 'manager' column
       const tdDir = document.createElement('td');
-      tdDir.innerHTML = dep.manager;
+      if (dep.managerId && dep.managerId.firstName) {
+        tdDir.innerHTML = (dep.managerId.firstName +" "+ dep.managerId.lastName);
+      } else {
+        tdDir.innerHTML = 'N/A';
+      }
 
-      // 'premieredYear' column
+      // 'employees' column
       const tdEmp = document.createElement('td');
       tdEmp.innerHTML = dep.employees;
 
