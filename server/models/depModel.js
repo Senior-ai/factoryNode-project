@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 
 const departmentSchema = new mongoose.Schema(
   {
-    _id: Number,
     name: String,
     managerId: {type: mongoose.Schema.Types.ObjectId, ref: 'employees'},
+    managerDetails: {},
     employees: []
   },
   { versionKey: false }
 );
 
-const dep = mongoose.model('departments', departmentSchema);
+const dep = mongoose.model('department', departmentSchema);
 module.exports = dep;

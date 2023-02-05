@@ -2,12 +2,13 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema(
   {
-    _id: Number,
-    fullName: String,
+    id: Number,
+    name: String,
+    email: String,
     numofActions: Number,
   },
   { versionKey: false }
 );
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('_user', userSchema);
 module.exports = User;

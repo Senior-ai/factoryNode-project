@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 const shiftSchema = new mongoose.Schema(
   {
-    _id: Number,
     date: Date,
     startingHour: Number,
     endingHour: Number,
+    employees: [{}],
   },
   { versionKey: false }
 );

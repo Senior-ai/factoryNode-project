@@ -1,8 +1,8 @@
 { 
     "actions": [
-        {"id": 1, "maxActions": 5, "date": "1/03/2022", "actionAllowed": 4},
-        {"id": 1, "maxActions": 5, "date": "1/03/2022", "actionAllowed": 3},
-        {"id": 1, "maxActions": 5, "date": "2/03/2022", "actionAllowed": 4}
+        {"userId": 1, "maxActions": 5, "date": "1/03/2022", "actionAllowed": 4, "actionName": "check_dep"},
+        {"userId": 1, "maxActions": 5, "date": "1/03/2022", "actionAllowed": 3, "actionName": "check_users"},
+        {"userId": 1, "maxActions": 5, "date": "2/03/2022", "actionAllowed": 4, "actionName": "check_dep"}
     ]
 }
 

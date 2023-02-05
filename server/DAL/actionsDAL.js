@@ -2,8 +2,10 @@ const jsonfile = require('jsonfile');
 
 const file = './data/actions.json'
 
-const addAction = () => {
-    jsonfile.writeFile(file); //check if its correct
+const addAction = (data) => {
+    jsonfile.writeFile(file, data, (err) => {
+        if (err) console.log('JSON err - ' +err);
+    }); //check if its correct
     return 'updated';
 }
 

@@ -6,7 +6,10 @@ const connectDB = require('./server/configs/db')
 const authRouter = require('./server/routers/authRouter');
 const depRouter = require("./server/routers/depRouter");
 const shiftsRouter = require('./server/routers/shiftsRouter');
-    const app = express();
+const userRouter = require('./server/routers/userRouter');
+
+  //setting up port and routers
+  const app = express();
     const port = 4000;
 
     connectDB();
@@ -15,8 +18,7 @@ const shiftsRouter = require('./server/routers/shiftsRouter');
     app.use('/login', authRouter);
     app.use('/departments', depRouter);
     app.use('/shifts', shiftsRouter);
-    //setting up routers
-
+    app.use('/users', userRouter);
     app.listen(port, () => {
       console.log(
         `Running an API server at: http://localhost:${port}/departments`

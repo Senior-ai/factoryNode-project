@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const empSchema = new mongoose.Schema(
   {
-    _id: Number,
     firstName: String,
     lastName: String,
     startWorkYear: Number,
@@ -11,5 +10,5 @@ const empSchema = new mongoose.Schema(
   { versionKey: false }
 );
 
-const Employee = mongoose.model('employees', empSchema);
+const Employee = mongoose.model('employee', empSchema);
 module.exports = Employee;
