@@ -8,8 +8,7 @@ const router = express.Router();
 
 router.route('/').get( async(req, res) => {
     try {
-    const emps = await empBLL.getAllEmployees()
-    .populate('employee');
+    const emps = await empBLL.getAllEmployees();
     const jwt = req.body;
     res.json(emps);
     res.status(200);

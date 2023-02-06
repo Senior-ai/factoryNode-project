@@ -1,7 +1,13 @@
 const Employee = require('../models/empModel');
 
-const getAllEmployees = () => {
-    return Employee.find();
+const getAllEmployees = async () => {
+    try {
+        const emps = await Employee.find().populate('departmentID'); 
+        return emps;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
 }
 const getEmployeeById = (id) => {
     return Employee.findById({_id: id});

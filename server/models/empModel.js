@@ -6,6 +6,7 @@ const empSchema = new mongoose.Schema(
     lastName: String,
     startWorkYear: Number,
     departmentID: {type: mongoose.Schema.Types.ObjectId, ref: 'department'},
+    shifts: [{type: mongoose.Schema.Types.ObjectId, ref: 'shift'}],
   },
   { versionKey: false }
 );
