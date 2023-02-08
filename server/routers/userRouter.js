@@ -1,19 +1,19 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const userBLL = require('../BLL/userBLL')
-
+const actions = require('../DAL/actionsDAL');
 const router = express.Router();
 
 // Entry Point: 'http://localhost:8000/users/'
 
 router.route('/').get( async(req, res) => {
-    try {
+    //try {
     const users = await userBLL.getAllUsers();
     res.json(users);
-    res.status(200);
-    } catch (error) {
-        res.json(error);
-    }
+    // res.status(200);
+    // } catch (error) {
+    //     res.json(error);
+    // }
 });
 
 // Get user By ID
@@ -38,5 +38,15 @@ router.route('/:id').get(async (req, res) => {
       res.json(error);
     }
   });
+
+  // router.route('/actions').get(async (req, res) => {
+  //   try {
+  //     const actions = await actions.getActions();
+  //     res.json(actions);
+  //     res.status(200)
+  //   } catch (error) {
+  //     res.json(error);
+  //   }
+  // })
 
 module.exports = router;

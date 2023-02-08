@@ -1,9 +1,35 @@
 const actions = require('../DAL/actionsDAL');
 const user = require('../models/userModel');
 //Users cant get deleted.
-const getAllUsers = () => {
-    return user.find()
+const getAllUsers = async () => {
+    const userData = [];
+    const { actions: actionsAllowed } = await actions.getActions();
+    const usersDB = await user.find({});
+    usersDB.forEach((user) => {
+        const obj = {
+            id: user._id,
+            userId: user.id,
+            name: user.name,
+            maxActions: user.numOfActions,
+            numOfActions: user.numOfActions
+        };
+        actionsAllowed.forEach((per) => {
+          if (per.userId === obj.userId)
+          {
+              let today = new Date();
+              var dd = String(today.getDate()).padStart(2, '0');
+              var mm = String(today.getMonth() + 1).padStart(2, '0');
+              var yyyy = today.getFullYear();
+              let todayString = dd + "/" + mm + "/" + yyyy;
+              if (todayString === per.date) {
+                 obj.numOfActions = per.actionAllowed;
+              }
+          }});
+        userData.push(obj)
+    });
+    return userData;
 }
+
 const getUserById = ({id}) => {
     return user.findById({id});
 }
@@ -13,12 +39,14 @@ const updateUser = async (id, obj) => {
     return 'Updated';
 }
 
-const addAction = async (id, obj) => {
-    actions.addAction(id, obj); //TODO - Change it
-    await updateUser(id, obj);
-    return 'Created';
-}
+// const addAction = async (id, obj) => {
+//     actions.addAction(id, obj); //TODO - Change it
+//     await updateUser(id, obj);
+//     return 'Created';
+// }
 
-
-module.exports = {getAllUsers, getUserById, addAction,
+// const getJsonAction = () => {
+//     return actions.getActions();
+// }
+module.exports = {getAllUsers, getUserById, //addAction, getJsonAction
 updateUser}

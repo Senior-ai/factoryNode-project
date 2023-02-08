@@ -7,8 +7,8 @@ const getAllDepartments = async () => {
         console.log(deps);
         return deps;
     } catch (err) {
-        console.error(error);
-        throw error;
+        console.error(err);
+        throw err;
     }
 };
 const getDepartmentById = (id) => {

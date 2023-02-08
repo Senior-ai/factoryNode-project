@@ -33,7 +33,7 @@
           sessionStorage['accessToken'] = content[0].accessToken; //JWT
           sessionStorage['username'] = loginData.username;
           console.log(content[0].accessToken);
-          //window.location.href = './home.html';
+          window.location.href = './home.html';
         }
         else
         {

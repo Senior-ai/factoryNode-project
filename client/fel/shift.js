@@ -1,35 +1,34 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     async function getData() {
-      const url = 'http://localhost:4000/employees';
+      const url = 'http://localhost:4000/shifts';
       const resp = await fetch(url);
       const emps = await resp.json();
-      console.log(emps[1].employees);
+      console.log(emps[0].Date);
       const tbody = document.getElementById('tBody');
   
       emps.forEach((emp) => {
         // table row
         const tr = document.createElement('tr');
-  
-        // 'Name' column
+        // 'ID' column
+        const tdId = document.createElement('td');
+        const idLink = document.createElement('a');
+        idLink.href = `editShift.html?shiftId=${emp._id}`;
+        idLink.innerHTML = emp._id;
+        tdId.appendChild(idLink);
+        
+        // 'Date' column
         const tdName = document.createElement('td');
         const nameLink = document.createElement('a');
-  
-        nameLink.href = `editEmp.html?empId=${emp._id}`;
-  
-        nameLink.innerHTML = emp.firstName + " "+emp.lastName; 
-        tdName.appendChild(nameLink);
-  
-        // 'dep' column
+        tdName.innerHTML = emp.Date;
+        // 'Hours' column
         const tdDir = document.createElement('td');
-        const depLink = document.createElement('a');
-        depLink.href = `../department/editDep.html?depId=${emp.departmentID._id}`;
-        depLink.innerHTML = (emp.departmentID.name);
-        tdDir.appendChild(depLink);
-        // 'shifts' column
+        tdDir.innerHTML = (emp.StartingHour + " - " + emp.EndingHour);
+        // 'employees' column
         const tdEmp = document.createElement('td');
-        tdEmp.innerHTML = emp.shifts;
+        tdEmp.innerHTML = emp.employees;
   
+        tr.appendChild(tdId);
         tr.appendChild(tdName);
         tr.appendChild(tdDir);
         tr.appendChild(tdEmp);
