@@ -4,7 +4,7 @@ const employee = require('../models/empModel');
 const getAllDepartments = async () => {
     try {
         const deps = await department.find().populate('managerId').populate('employees');
-        console.log(deps);
+        //console.log(deps);
         return deps;
     } catch (err) {
         console.error(err);
