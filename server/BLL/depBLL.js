@@ -3,7 +3,9 @@ const employee = require('../models/empModel');
 
 const getAllDepartments = async () => {
     try {
-        const deps = await department.find().populate('managerId').populate('employees');
+        const deps = await department.find()
+        .populate({path: 'managerId', select: 'firstName lastName startWorkYear'})
+        .populate({path: 'employees', select: 'firstName lastName startWorkYear'});
         //console.log(deps);
         return deps;
     } catch (err) {

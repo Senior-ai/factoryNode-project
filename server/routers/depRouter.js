@@ -9,7 +9,7 @@ const router = express.Router();
 router.route('/').get( async(req, res) => {
     try {
     const deps = await depBLL.getAllDepartments();
-    console.log(deps);
+    //console.log(deps);
     const jwt = req.body;
     res.json(deps);
     res.status(200);

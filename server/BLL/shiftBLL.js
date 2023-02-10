@@ -1,7 +1,14 @@
 const shift = require('../models/shiftModel');
 
-const getAllShifts = () => {
-    return shift.find();
+const getAllShifts = async () => {
+try {
+    const shifts = await shift.find()
+    .populate({path: 'employees', select: 'firstName lastName'});
+    return shifts;
+} catch (err) {
+    console.error(err);
+    throw err;
+}
 }
 const getShiftById = (id) => {
     return shift.findById({_id: id});

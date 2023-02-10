@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const url = 'http://localhost:4000/departments';
     const resp = await fetch(url);
     const deps = await resp.json();
-    console.log(deps[1].employees);
+    //console.log(deps[1].employees);
     const tbody = document.getElementById('tBody');
 
     deps.forEach((dep) => {
@@ -30,8 +30,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 'employees' column
       const tdEmp = document.createElement('td');
-      tdEmp.innerHTML = dep.employees;
+      if (dep.employees[0] !== undefined)
+      {
+        for (let i=0; i < dep.employees.length; i++)
+        {
+          console.log(dep.employees[i].firstName);
+          const nameLink = document.createElement('a');
+          nameLink.href = `../employee/editEmp.html?empId=${dep.employees[i]._id}`;
+          nameLink.innerHTML = (dep.employees[i].firstName +" "+dep.employees[i].lastName); 
+          tdEmp.appendChild(nameLink);  
+        }
+      } else {
+        tdEmp.innerHTML = 'No Employees in this department yet'
+      }
 
+      
       tr.appendChild(tdName);
       tr.appendChild(tdDir);
       tr.appendChild(tdEmp);
@@ -40,3 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }  getData();
 });
+
+function addDep() {
+  window.location.href = './addDep.html';
+}
