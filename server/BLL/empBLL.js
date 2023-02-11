@@ -2,7 +2,8 @@ const Employee = require('../models/empModel');
 
 const getAllEmployees = async () => {
     try {
-        const emps = await Employee.find().populate('departmentID'); 
+        const emps = await Employee.find().populate('departmentID')
+        .populate({path: 'shift', select: 'Date StartingHour EndingHour'}); 
         return emps;
     } catch (error) {
         console.log(error);

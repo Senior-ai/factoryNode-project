@@ -26,7 +26,26 @@ document.addEventListener("DOMContentLoaded", () => {
         tdDir.innerHTML = (emp.StartingHour + " - " + emp.EndingHour);
         // 'employees' column
         const tdEmp = document.createElement('td');
-        tdEmp.innerHTML = emp.employees;
+        if (emp.employees[0] !== undefined)
+      {
+        for (let i=0; i < emp.employees.length; i++)
+        {
+          console.log(emp.employees[i].firstName);
+          const nameLink = document.createElement('a');
+          nameLink.href = `../employee/editEmp.html?empId=${emp.employees[i]._id}`;
+          nameLink.innerHTML = (emp.employees[i].firstName +" "+emp.employees[i].lastName); 
+          tdEmp.appendChild(nameLink);
+          
+          if (i !== emp.employees.length - 1)
+          {
+            const comma = document.createElement('span');
+            comma.innerHTML = ', ';
+            tdEmp.appendChild(comma);
+          }
+        }
+      } else {
+        tdEmp.innerHTML = 'No Employees in this shift yet'
+      }
   
         tr.appendChild(tdId);
         tr.appendChild(tdName);

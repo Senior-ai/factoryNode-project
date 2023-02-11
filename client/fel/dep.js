@@ -37,14 +37,20 @@ document.addEventListener("DOMContentLoaded", () => {
           console.log(dep.employees[i].firstName);
           const nameLink = document.createElement('a');
           nameLink.href = `../employee/editEmp.html?empId=${dep.employees[i]._id}`;
-          nameLink.innerHTML = (dep.employees[i].firstName +" "+dep.employees[i].lastName); 
-          tdEmp.appendChild(nameLink);  
+          nameLink.innerHTML = (dep.employees[i].firstName +" "+dep.employees[i].lastName);
+          tdEmp.appendChild(nameLink);
+          
+          if (i !== dep.employees.length - 1)
+          {
+            const comma = document.createElement('span');
+            comma.innerHTML = ', ';
+            tdEmp.appendChild(comma);
+          }
         }
       } else {
         tdEmp.innerHTML = 'No Employees in this department yet'
       }
 
-      
       tr.appendChild(tdName);
       tr.appendChild(tdDir);
       tr.appendChild(tdEmp);
