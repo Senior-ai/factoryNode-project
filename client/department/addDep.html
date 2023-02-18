@@ -20,20 +20,20 @@
           aria-describedby="emailHelp"
           placeholder="Name"
         />
-      </div>
+      </div id="div-form">
       <br />
       <label for="employee-select">Select a manager</label><br/>
       <select id="employee-select">
         <option value="">Select an Employee</option>
       </select>
       <br/><br/>
-      <button type="input" class="btn btn-primary" onclick="updateDep()">
+      <button type="input" class="btn btn-primary" onclick="addDep()">
         Add
       </button>
       <button type="input" class="btn btn-primary" id="back">
         Cancel
-      </button>
-    </div>
+      </button> <br/><br/>
+    </div><br/>
     
     <script>
       const url = 'http://localhost:4000/departments';
@@ -54,7 +54,7 @@
       async function addDep() {
       const obj = {
           name: document.getElementById('name').value,
-          director: document.getElementById('lastName').value,
+          managerId: document.getElementById('employee-select').value,
         };
         console.log(obj);
         const resp = await fetch(url, {
@@ -65,6 +65,15 @@
 
         const data = resp.json();
         console.log(data);
+        if (data)
+        {
+          const success = document.createElement('span');
+          success.className = "badge badge-success";
+          success.innerHTML = 'Successfully created!';
+          const div = document.getElementById('div-form')
+          div.appendChild(success);
+          setTimeout(() => window.history.back(), 2500);
+        }
       }
 
       document.getElementById("back").addEventListener("click", function() {

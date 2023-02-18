@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const url = 'http://localhost:4000/employees';
       const resp = await fetch(url);
       const emps = await resp.json();
-      console.log(emps[1].employees);
       const tbody = document.getElementById('tBody');
   
       emps.forEach((emp) => {
@@ -28,7 +27,27 @@ document.addEventListener("DOMContentLoaded", () => {
         tdDir.appendChild(depLink);
         // 'shifts' column
         const tdEmp = document.createElement('td');
-        tdEmp.innerHTML = emp.shifts;
+        if (emp.shifts[0] !== undefined)
+        {
+          for (let i=0; i < emp.shifts.length; i++)
+          {
+            const nameLink = document.createElement('a');
+            nameLink.innerHTML = (`Shift No.${i+1}: `+emp.shifts[i].StartingHour +" - "+emp.shifts[i].EndingHour +", " + emp.shifts[i].Date); 
+            tdEmp.appendChild(nameLink);
+
+            if (i !== emp.shifts.length - 1)
+            {
+              const comma = document.createElement('br');
+              tdEmp.appendChild(comma);
+            }
+          }
+        }
+        else {
+          const text = document.createElement('a');
+          text.innerHTML = 'Currently, there are no shifts to this employee'
+          tdEmp.appendChild(text);
+        }
+      
   
         tr.appendChild(tdName);
         tr.appendChild(tdDir);

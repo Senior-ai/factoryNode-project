@@ -46,23 +46,30 @@
     </div>
     
     <script>
-      const url = 'http://localhost:4000/employees';
+      const empUrl = 'http://localhost:4000/employees';
 
       async function addEmp() {
         const obj = {
-          name: document.getElementById('name').value,
+          firstName: document.getElementById('name').value,
           lastName: document.getElementById('lastName').value,
-          premieredYear: document.getElementById('premieredYear').value,
+          startWorkYear: document.getElementById('premieredYear').value,
         };
 
-        const resp = await fetch(`${url}/${movieId}`, {
-          method: 'put',
+        const resp = await fetch(empUrl, {
+          method: 'post',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(obj),
         });
 
         const data = await resp.json();
         console.log(data);
+        if (data == 'Created!')
+        {
+          const text = document.createElement("p");
+          text.innerHTML = "Created!";
+          text.style.color = "green";
+          document.body.appendChild(text);
+        }
       }
     </script>
   </body>

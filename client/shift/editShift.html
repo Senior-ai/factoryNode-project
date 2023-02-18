@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body onload="loadData()">
+    <div class="container" style="margin-top: 50px">
+      <h1>Edit current shift</h1>
+      <br />
+      <div class="form-group">
+        <label for="date">Change Date (Write it in dd/mm/yyyy format)</label>
+        <input
+          type="text"
+          class="form-control"
+          id="date"
+          aria-describedby="emailHelp"
+          placeholder="Date"
+        />
+      </div><br/>
+      <div class="form-group">
+        <label for="startingHour">Change Starting Hour</label>
+        <input
+          type="number"
+          class="form-control"
+          id="startingHour"
+          aria-describedby="emailHelp"
+          placeholder="Starting Hour"
+        />
+      </div><br/>
+      <div class="form-group">
+        <label for="endingHour">Change Ending Hour</label>
+        <input
+          type="number"
+          class="form-control"
+          id="endingHour"
+          aria-describedby="emailHelp"
+          placeholder="Ending Hour"
+        />
+      </div><br/>
+      <label for="emp-select">Add employees to the shift</label><br/>
+      <select id="emp-select">
+        <option value="">Choose a new employee</option>
+      </select>
+      <br/><br/>
+      <button type="input" class="btn btn-primary" onclick="updateDep()">
+        Update
+      </button>
+      <button type="input" class="btn btn-primary" id="back">
+        Cancel
+      </button>
+    
+    <script src="./editShift.js"></script>
+    <script>
+      document.getElementById("back").addEventListener("click", function() {
+        window.history.back();
+      });
+    </script>
+  </body>
+</html>

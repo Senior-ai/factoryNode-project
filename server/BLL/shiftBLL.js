@@ -11,7 +11,8 @@ try {
 }
 }
 const getShiftById = (id) => {
-    return shift.findById({_id: id});
+    return shift.findById({_id: id})
+    .populate({path: 'employees', select: 'firstName lastName'});;
 }
 
 const updateShift = async (id, obj) => {
