@@ -39,14 +39,13 @@ const updateUser = async (id, obj) => {
     return 'Updated';
 }
 
-// const addAction = async (id, obj) => {
-//     actions.addAction(id, obj); //TODO - Change it
-//     await updateUser(id, obj);
-//     return 'Created';
-// }
+const addAction = async (obj) => {
+    actions.addAction(obj); //TODO - Change it
+    return 'Created';
+}
 
 // const getJsonAction = () => {
 //     return actions.getActions();
 // }
-module.exports = {getAllUsers, getUserById, //addAction, getJsonAction
+module.exports = {getAllUsers, getUserById, addAction,
 updateUser}

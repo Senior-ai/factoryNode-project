@@ -39,14 +39,15 @@ router.route('/:id').get(async (req, res) => {
     }
   });
 
-  // router.route('/actions').get(async (req, res) => {
-  //   try {
-  //     const actions = await actions.getActions();
-  //     res.json(actions);
-  //     res.status(200)
-  //   } catch (error) {
-  //     res.json(error);
-  //   }
-  // })
+  router.route('/actions').post(async (req, res) => {
+    try {
+      const obj = req.body;
+      const actions = await userBLL.addAction(obj);
+      res.json(actions);
+      res.status(200)
+    } catch (error) {
+      res.json(error);
+    }
+  })
 
 module.exports = router;

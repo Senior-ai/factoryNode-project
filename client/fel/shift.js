@@ -57,6 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }  getData();
   });
 
-  function addEmp() {
-    window.location.href = './addEmp.html';
+  function addShift() {
+    window.location.href = './addShift.html';
   }

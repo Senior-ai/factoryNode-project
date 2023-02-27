@@ -1,9 +1,1 @@
-{ 
-    "actions": [
-        {"userId": 1, "maxActions": 15, "date": "1/03/2022", "actionAllowed": 4, "actionName": "check_dep"},
-        {"userId": 1, "maxActions": 15, "date": "1/03/2022", "actionAllowed": 3, "actionName": "check_users"},
-        {"userId": 1, "maxActions": 15, "date": "2/03/2022", "actionAllowed": 4, "actionName": "check_dep"},
-        {"userId": 1, "maxActions": 15, "date": "07/02/2023", "actionAllowed": 14, "actionName": "test"}
-    ]
-}
-
+{"actions":[{"userId":1,"maxActions":15,"date":"1/03/2022","actionAllowed":4},{"userId":1,"maxActions":15,"date":"1/03/2022","actionAllowed":3},{"userId":1,"maxActions":15,"date":"2/03/2022","actionAllowed":4},{"userId":1,"maxActions":15,"date":"07/02/2023","actionAllowed":14},{"userId":1,"maxActions":15,"date":"27/02/2023","actionAllowed":13},{"userId":2,"maxActions":15,"date":"27/02/2023","actionAllowed":13}]}

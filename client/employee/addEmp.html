@@ -43,6 +43,9 @@
       <button type="input" class="btn btn-primary" onclick="addEmp()">
         Add
       </button>
+      <button type="input" class="btn btn-primary" id="back">
+        Cancel
+      </button>
     </div>
     
     <script>
@@ -71,6 +74,10 @@
           document.body.appendChild(text);
         }
       }
+
+      document.getElementById("back").addEventListener("click", function() {
+        window.history.back();
+      });
     </script>
   </body>
 </html>

@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"> 
 </head>
-<body onload="load()">
+<body onload="userLoad()">
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -31,9 +31,9 @@
             </ul>
             <span class="navbar-text" style="padding-right: 25px;">
                 <div class="dropdown">
-                    <button class="dropbtn">Username</button>
+                    <button class="dropbtn" id="username">Username</button>
                     <div class="dropdown-content">
-                      <a href="../profile.html">Profile</a>
+                      <a href="./profile.html">Profile</a>
                       <a href="../login.html" onclick="logOut()">Log Out</a>
                     </div>
                   </div>
@@ -92,5 +92,5 @@ display: block;
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #6a6b6ad8;}
 </style>
-<script src="fel/home.js"></script>
+<script src="fel/loader.js"></script>
 </html>

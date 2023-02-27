@@ -7,24 +7,18 @@ const router = express.Router();
 
 router.route('/').get((req, res) => {
   // if 'username' and 'password' exist - Gets checked in login.html script
- try {
-  const userId = '1';  
-  //const userId = req.body.id; // find user's ID
-    const ACCESS_SECRET_TOKEN = 'someKey';
-
-    const accessToken = jwt.sign(
-      {id: userId },
-      ACCESS_SECRET_TOKEN,
-      // { expiresIn: 7200 } // expires after 7200ms (2 hours)
-    ); // Get Access Token
-    res.json({ accessToken });
+  try {
+    let jwtSecretKey = process.env.JWT_SECRET_KEY;
+    let data = {
+      time: Date(),
+      userId: req.params,
+    }
+  
+    const token = jwt.sign(data, jwtSecretKey, {expiresIn: 9000}); //Will expire after 2.5 hours
+    
+    res.send(token);
  } catch (err) {
-  res.json(error);
+  res.json(err);
  }
-  
-  
-
- // res.status(401);
 });
-
 module.exports = router;
