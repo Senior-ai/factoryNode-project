@@ -23,12 +23,16 @@
         {
           const authRes = await fetch(authUrl);
           const token = await authRes.json();
+          const now = new Date();
+          const timeObj = {hour: now.getHours()+2, minute: now.getMinutes()+30, second: now.getSeconds()};
 
-          sessionStorage['generatedTime'] = Date();
-          sessionStorage['accessToken'] = token.accessToken; //JWT
-          sessionStorage['username'] = loginData.username;
-          sessionStorage['userId'] = content[0].userId;
-          
+          sessionStorage.setItem('expiredTime', JSON.stringify(timeObj)); // To check in the loader if 2.5 hours have passed
+          //If they did, then remove all current items in the storage and log out the user
+
+          sessionStorage.setItem('accessToken', token.accessToken); //JWT
+          sessionStorage.setItem('username', loginData.username);
+          sessionStorage.setItem('userId', content[0].userId);
+
           console.log(token.accessToken);
           window.location.href = './home.html';
         }

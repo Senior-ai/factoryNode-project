@@ -7,7 +7,7 @@
       crossorigin="anonymous"
     />
   </head>
-  <body onload="loadData()">
+  <body onload="loadData(); userLoad();">
     <div class="container" style="margin-top: 50px">
       <h1>Edit Department's details</h1>
       <br />
@@ -43,6 +43,7 @@
       </button>
     
     <script src="./editDep.js"></script>
+    <script src="../fel/loader.js"></script>
     <script>
       document.getElementById("back").addEventListener("click", function() {
         window.history.back();
