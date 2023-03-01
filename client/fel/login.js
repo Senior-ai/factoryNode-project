@@ -32,7 +32,8 @@
           sessionStorage.setItem('accessToken', token.accessToken); //JWT
           sessionStorage.setItem('username', loginData.username);
           sessionStorage.setItem('userId', content[0].userId);
-
+          sessionStorage.setItem('maxActions', content[0].maxActions);
+          
           console.log(token.accessToken);
           window.location.href = './home.html';
         }

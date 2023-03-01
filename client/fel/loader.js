@@ -32,7 +32,7 @@ function actionCreate() {
 
     const obj = {
         "userId": sessionStorage.getItem("userId"),
-        "maxActions": 15,
+        "maxActions": sessionStorage.getItem("maxActions"),
         "date": currentDate,
         "actionAllowed": 13
     }
@@ -50,11 +50,12 @@ function logOut() {
 
 function pathChecker() {
     const currentPath = window.location.href;
+    console.log('path- '+currentPath);
         if (currentPath.includes('client/department') || currentPath.includes('client/employee')
         || currentPath.includes('client/shift'))
         {
-            sessionStorage.clear();
-            window.location.href = '../login.html';    
+            window.location.href = '../login.html';
+            sessionStorage.clear();    
         }
         else
         {

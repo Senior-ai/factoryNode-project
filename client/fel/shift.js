@@ -1,5 +1,4 @@
 
-document.addEventListener("DOMContentLoaded", () => {
     async function getData() {
       const url = 'http://localhost:4000/shifts';
       const resp = await fetch(url);
@@ -54,8 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
         tbody.appendChild(tr);
       });
-    }  getData();
-  });
+    }
 
   function addShift() {
     window.location.href = './addShift.html';

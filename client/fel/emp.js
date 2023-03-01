@@ -1,6 +1,5 @@
 
-document.addEventListener("DOMContentLoaded", () => {
-    async function getData() {
+async function getData() {
       const url = 'http://localhost:4000/employees';
       const resp = await fetch(url);
       const emps = await resp.json();
@@ -55,8 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
         tbody.appendChild(tr);
       });
-    }  getData();
-  });
+  }
 
   function addEmp() {
     window.location.href = './addEmp.html';
