@@ -8,6 +8,7 @@ const depRouter = require("./server/routers/depRouter");
 const shiftsRouter = require('./server/routers/shiftsRouter');
 const userRouter = require('./server/routers/userRouter');
 const empRouter = require('./server/routers/empRouter');
+const actionRouter = require('./server/routers/actionRouter');
   //setting up port and routers
   const app = express();
     const port = 4000;
@@ -20,9 +21,10 @@ const empRouter = require('./server/routers/empRouter');
     app.use('/shifts', shiftsRouter);
     app.use('/users', userRouter);
     app.use('/employees', empRouter);
+    app.use('/actions', actionRouter);
     app.listen(port, () => {
       console.log(
-        `Running an API server at: http://localhost:${port}/departments`
+        `Running an API server at: http://localhost:${port}/`
       );
     });
 

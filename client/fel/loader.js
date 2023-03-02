@@ -22,19 +22,23 @@ function userLoad() {
 }
 
 function actionCreate() {
-    const actionUrl = 'http://localhost:4000/login/actions';
-    
+    const actionUrl = 'http://localhost:4000/users/actions';
+    const getActionUrl = 'http://localhost:400/users/getAction'
+
     const _now = new Date();
     const day = _now.getDate().toString().padStart(2, '0');
     const month = (_now.getMonth() + 1).toString().padStart(2, '0'); // Note that month is zero-indexed
     const year = _now.getFullYear();
     const currentDate = `${day}/${month}/${year}`;
 
+    const userId = sessionStorage.getItem("userId");
+    const actionsAllowed = fetch(getActionUrl);
+    
     const obj = {
-        "userId": sessionStorage.getItem("userId"),
+        "userId": userId,
         "maxActions": sessionStorage.getItem("maxActions"),
         "date": currentDate,
-        "actionAllowed": 13
+        "actionAllowed": actionsAllowed
     }
     const resp = fetch(actionUrl, {
         method: 'post',

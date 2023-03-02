@@ -25,7 +25,7 @@
           const token = await authRes.json();
           const now = new Date();
           const timeObj = {hour: now.getHours()+2, minute: now.getMinutes()+30, second: now.getSeconds()};
-
+          console.log('TIME (login.js) - ' + timeObj)
           sessionStorage.setItem('expiredTime', JSON.stringify(timeObj)); // To check in the loader if 2.5 hours have passed
           //If they did, then remove all current items in the storage and log out the user
 

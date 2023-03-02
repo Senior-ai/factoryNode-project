@@ -39,13 +39,17 @@ const updateUser = async (id, obj) => {
     return 'Updated';
 }
 
-const addAction = async (obj) => {
-    actions.addAction(obj); //TODO - Change it
-    return 'Created';
+const getJsonAction = ({userId}) => {
+    const data = actions.getActions();
+    console.log('DATA (userBLL.js) - '+data)
+    const date = new Date();
+    const filteredData = data.filter(d =>
+        d.userId === {userId} && d.date === date);
+    const sortedData = filteredData.sort((a,b) =>
+    new Date(b.date) - new Date(a.date));
+    const action = sortedData.shift();
+    console.log('ACTION (userBLL.js) - ' + action)
+    return action;
 }
-
-// const getJsonAction = () => {
-//     return actions.getActions();
-// }
-module.exports = {getAllUsers, getUserById, addAction,
-updateUser}
+module.exports = {getAllUsers, getUserById,
+updateUser, getJsonAction}
