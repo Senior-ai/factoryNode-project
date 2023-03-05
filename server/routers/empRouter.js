@@ -4,7 +4,7 @@ const empBLL = require('../BLL/empBLL')
 
 const router = express.Router();
 
-// Entry Point: 'http://localhost:8000/empartments/'
+// Entry Point: 'http://localhost:8000/employees/'
 
 router.route('/').get( async(req, res) => {
     try {

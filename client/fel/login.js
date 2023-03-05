@@ -12,30 +12,37 @@
         .map(k => encodeURIComponent(k) + '=' +encodeURIComponent(loginData[k]))
         .join('&');
       
+        
         const url = 'https://jsonplaceholder.typicode.com/users?' + query;
-        const authUrl = 'http://localhost:4000/login';
-    
+        
         var res = await fetch(url);
-        console.log(res);
         var content = await res.json();
+        console.log(content[0]);
         
         if (content[0]) //cuz it will return false if the credentials entered do not exist
         {
-          const authRes = await fetch(authUrl);
-          const token = await authRes.json();
+          let authQuery = {id: content[0].id,
+          name: content[0].name}
+          const authUrl = 'http://localhost:4000/login/';
+
+          const resp = await fetch(authUrl, {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(authQuery),
+          });
+       
+          const data = await resp.json();
+          console.log('RESP- '+data.token);
           const now = new Date();
           const timeObj = {hour: now.getHours()+2, minute: now.getMinutes()+30, second: now.getSeconds()};
-          console.log('TIME (login.js) - ' + timeObj)
           sessionStorage.setItem('expiredTime', JSON.stringify(timeObj)); // To check in the loader if 2.5 hours have passed
           //If they did, then remove all current items in the storage and log out the user
 
-          sessionStorage.setItem('accessToken', token.accessToken); //JWT
+          sessionStorage.setItem('accessToken', data.token); //JWT
           sessionStorage.setItem('username', loginData.username);
-          sessionStorage.setItem('userId', content[0].userId);
-          sessionStorage.setItem('maxActions', content[0].maxActions);
+          sessionStorage.setItem('userId', content[0].id);
           
-          console.log(token.accessToken);
-          window.location.href = './home.html';
+         window.location.href = './home.html';
         }
         else
         {

@@ -15,15 +15,19 @@ function userLoad() {
         }
     }
     
+    if (checkAction())
+    {
+        pathChecker();
+    }
     if (!window.location.href.includes("edit") ||
     !window.location.href.includes("add")) {
         setUsername();
     }   
 }
 
-function actionCreate() {
-    const actionUrl = 'http://localhost:4000/users/actions';
-    const getActionUrl = 'http://localhost:400/users/getAction'
+async function actionCreate() {
+    const actionUrl = 'http://localhost:4000/actions/';
+    const usersUrl = 'http://localhost:4000/users/'
 
     const _now = new Date();
     const day = _now.getDate().toString().padStart(2, '0');
@@ -32,21 +36,36 @@ function actionCreate() {
     const currentDate = `${day}/${month}/${year}`;
 
     const userId = sessionStorage.getItem("userId");
-    const actionsAllowed = fetch(getActionUrl);
-    
+    const data = await fetch(usersUrl);
+    const users = await data.json();
+    const user = users.filter(u => u.userId == userId);
+    console.log(userId)
+    console.log(user);
     const obj = {
-        "userId": userId,
-        "maxActions": sessionStorage.getItem("maxActions"),
+        "userId": parseInt(userId),
+        "maxActions": user[0].maxActions, //y
         "date": currentDate,
-        "actionAllowed": actionsAllowed
+        "actionAllowed": user[0].numOfActions - 1 //y
     }
-    const resp = fetch(actionUrl, {
+    const resp = await fetch(actionUrl, {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(obj),
       });
 }
 
+async function checkAction() {
+    const usersUrl = 'http://localhost:4000/users/'
+
+    const userId = sessionStorage.getItem("userId");
+    const data = await fetch(usersUrl);
+    const users = await data.json();
+    const user = users.filter(u => u.userId == userId);
+    if (user[0].numOfActions - 1 == 0)
+        return true;
+    else
+        return false;
+}
 function logOut() {
     pathChecker();
     //TODO - Add a toast "You have logged out"
@@ -63,13 +82,13 @@ function pathChecker() {
         }
         else
         {
-            sessionStorage.clear();
             window.location.href = './login.html';
+            sessionStorage.clear();
         }
 }
 
 function setUsername() {
-    if (sessionStorage.getItem("username") === null)
+    if (sessionStorage.getItem("username") === null) //Supposed to never happen, but just in case
     {
         document.getElementById("username").innerHTML = "Test username";
     }

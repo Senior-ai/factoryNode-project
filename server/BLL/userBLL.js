@@ -10,7 +10,7 @@ const getAllUsers = async () => {
             id: user._id,
             userId: user.id,
             name: user.name,
-            maxActions: user.numOfActions,
+            maxActions: user.maxActions,
             numOfActions: user.numOfActions
         };
         actionsAllowed.forEach((per) => {
@@ -38,7 +38,7 @@ const updateUser = async (id, obj) => {
     await user.findByIdAndUpdate(id, obj);
     return 'Updated';
 }
-
+/*
 const getJsonAction = ({userId}) => {
     const data = actions.getActions();
     console.log('DATA (userBLL.js) - '+data)
@@ -50,6 +50,6 @@ const getJsonAction = ({userId}) => {
     const action = sortedData.shift();
     console.log('ACTION (userBLL.js) - ' + action)
     return action;
-}
+}*/
 module.exports = {getAllUsers, getUserById,
-updateUser, getJsonAction}
+updateUser}
