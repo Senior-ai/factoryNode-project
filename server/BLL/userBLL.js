@@ -10,7 +10,7 @@ const getAllUsers = async () => {
             id: user._id,
             userId: user.id,
             name: user.name,
-            maxActions: user.maxActions,
+            maxActions: user.numOfActions,
             numOfActions: user.numOfActions
         };
         actionsAllowed.forEach((per) => {

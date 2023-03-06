@@ -51,6 +51,7 @@ const depId = params.get('depId');
          {
             manager = dep.managerId;
          }
+         
         const obj = {
           name: document.getElementById('name').value,
           managerId: manager,
