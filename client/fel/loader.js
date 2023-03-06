@@ -1,5 +1,5 @@
 
-function userLoad() {
+async function userLoad() {
     if (sessionStorage.getItem("accessToken") === null)
     {
         pathChecker();  
@@ -15,7 +15,7 @@ function userLoad() {
         }
     }
     
-    if (checkAction())
+    if (await checkAction())
     {
         pathChecker();
     }
