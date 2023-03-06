@@ -8,16 +8,13 @@ async function getData() {
       emps.forEach((emp) => {
         // table row
         const tr = document.createElement('tr');
-  
         // 'Name' column
         const tdName = document.createElement('td');
         const nameLink = document.createElement('a');
-  
         nameLink.href = `editEmp.html?empId=${emp._id}`;
   
         nameLink.innerHTML = emp.firstName + " "+emp.lastName; 
         tdName.appendChild(nameLink);
-  
         // 'dep' column
         const tdDir = document.createElement('td');
         const depLink = document.createElement('a');
@@ -47,15 +44,27 @@ async function getData() {
           tdEmp.appendChild(text);
         }
       
-  
         tr.appendChild(tdName);
         tr.appendChild(tdDir);
         tr.appendChild(tdEmp);
   
         tbody.appendChild(tr);
+        loadDepartments();
       });
   }
 
   function addEmp() {
     window.location.href = './addEmp.html';
+  }
+
+  async function loadDepartments() {
+    const depUrl = 'http://localhost:4000/departments';
+    const data = await fetch(depUrl);
+    const deps = data.json();
+    const select = document.getElementById('deps');
+    deps.forEach(dep => {
+      const option = document.createElement('option');
+      option.innerHTML(dep.name);
+      select.appendChild(option);
+    })
   }
