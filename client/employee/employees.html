@@ -9,6 +9,10 @@
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"> 
   <script src="../fel/emp.js"></script>
   <script src="../fel/loader.js"></script>
+  <script>
+        const departmentSelect = document.getElementById('deps');
+        departmentSelect.addEventListener('change', reloadTable());
+  </script>
 </head>
 <body onload="actionCreate(); getData(); userLoad();">
     <header>
@@ -52,6 +56,8 @@
           <button type="input" class="btn btn-primary" onclick="addEmp()" style="margin-right: 1000px; margin-bottom: 25px;">
             New Employee
           </button> <br/> 
+          <select name="departments" id="deps">
+          </select>
         <table class="table table-striped table-bordered table-hover">
           <thead>
             <tr>
@@ -62,9 +68,6 @@
           </thead>
           <tbody id="tBody"></tbody>
         </table>
-        <select name="departments" id="deps">
-          <option value="all">All Departments</option>
-        </select>
       </div>
     </center>
 

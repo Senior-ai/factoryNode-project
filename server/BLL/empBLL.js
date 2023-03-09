@@ -11,7 +11,8 @@ const getAllEmployees = async () => {
     }
 }
 const getEmployeeById = (id) => {
-    return Employee.findById({_id: id});
+    return Employee.findById({_id: id}).populate({path: 'departmentID', select: 'name managerId'})
+    .populate({path: 'shifts', select: 'Date StartingHour EndingHour'});
 }
 
 const updateEmployee = async (id, obj) => {

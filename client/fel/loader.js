@@ -30,7 +30,7 @@ function userLoad() {
        pathChecker();
        displayDialog('You have been logged out because you reached your daily limit of actions'); 
     }
-    if (!window.location.href.includes("edit") ||
+    if (!window.location.href.includes("edit") &&
     !window.location.href.includes("add")) {
         setUsername();
     }   

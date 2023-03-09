@@ -7,7 +7,7 @@
       crossorigin="anonymous"
     />
   </head>
-  <body>
+  <body onload="loadDeps()">
     <div class="container" style="margin-top: 50px">
       <h1>Add a new Employee</h1>
       <br />
@@ -40,6 +40,9 @@
         />
       </div>
       <br />
+      Select a department: <br/>
+      <select name="departments" id="deps"></select> 
+      <br/><br/>
       <button type="input" class="btn btn-primary" onclick="addEmp(); actionCreate()">
         Add
       </button>
@@ -48,36 +51,6 @@
       </button>
     </div>
     <script src="../fel/loader.js"></script>
-    <script>
-      const empUrl = 'http://localhost:4000/employees';
-
-      async function addEmp() {
-        const obj = {
-          firstName: document.getElementById('name').value,
-          lastName: document.getElementById('lastName').value,
-          startWorkYear: document.getElementById('premieredYear').value,
-        };
-
-        const resp = await fetch(empUrl, {
-          method: 'post',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(obj),
-        });
-
-        const data = await resp.json();
-        console.log(data);
-        if (data == 'Created!')
-        {
-          const text = document.createElement("p");
-          text.innerHTML = "Created!";
-          text.style.color = "green";
-          document.body.appendChild(text);
-        }
-      }
-
-      document.getElementById("back").addEventListener("click", function() {
-        window.history.back();
-      });
-    </script>
+    <script src="./addEmp.js"></script>
   </body>
 </html>

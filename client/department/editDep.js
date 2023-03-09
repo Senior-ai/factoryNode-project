@@ -1,6 +1,7 @@
 
 var url = 'http://localhost:4000/departments';
 var empUrl = 'http://localhost:4000/employees';  
+const empArr = []
 
 const params = new URLSearchParams(location.search);
 const depId = params.get('depId');
@@ -37,12 +38,44 @@ const depId = params.get('depId');
 
 
       }
-
-      async function updateDep() {
+      function saveEmps() {
         const newEmp = document.getElementById('emp-select').value;
-        const empresp = await fetch(`${empUrl}/${newEmp}`);
-        const emp = await empresp.json();
+        const selectEmp = document.getElementById('emp-select');
+        if (selectEmp.selectedIndex >= 0)
+        {
+          empArr.push(newEmp);
+          const empName = selectEmp.options[selectEmp.selectedIndex].text;
+          const text = document.getElementById('selectedEmps');
+          text.innerHTML +=  empName + ', '
+        } 
+      }
+      async function updateDep() {
 
+        //update Emp with the new department
+        if (empArr.length > 0)
+        {
+
+          employees = [empArr];
+          empArr.forEach(async function(e) {
+            const empresp = await fetch(`${empUrl}/${e}`);
+            const emp = await empresp.json();
+              const empObj = {
+                firstName: emp.firstName,
+                lastName: emp.lastName,
+                startWorkYear: emp.startWorkYear,
+                departmentID: depId
+              };
+
+            const empResp = await fetch(`${empUrl}/${e}`, {
+              method: 'put',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify(empObj),
+            });
+          });
+        }
+          
+        
+        //update department
         const depresp = await fetch(`${url}/${depId}`);
         const dep = await depresp.json();
 
@@ -55,7 +88,7 @@ const depId = params.get('depId');
         const obj = {
           name: document.getElementById('name').value,
           managerId: manager,
-          employees: [newEmp],
+          employees: [empArr],
         };
 
         const resp = await fetch(`${url}/${depId}`, {
@@ -66,23 +99,6 @@ const depId = params.get('depId');
 
         const data = await resp.json();
         console.log(data);
-        //change the department of newEmp
-        if (newEmp.length > 0)
-        {
-        const empObj = {
-          firstName: emp.firstName,
-          lastName: emp.lastName,
-          startWorkYear: emp.startWorkYear,
-          departmentID: depId
-        };
-        const empResp = await fetch(`${empUrl}/${newEmp}`, {
-          method: 'put',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(empObj),
-        });
-        const empData = await empResp.json();
-        console.log(empData);
-        }
       }
 
       async function deleteDep() {
