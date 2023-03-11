@@ -22,8 +22,8 @@ const updateEmployee = async (id, obj) => {
 
 const addEmployee = async (obj) => {
     const emp = new Employee(obj)
-    emp.save();
-    return 'Created!'; 
+    const newEmp = await emp.save();
+    return {id: newEmp._id, employee: newEmp}; 
 }
 
 const deleteEmployee = async (id) => {

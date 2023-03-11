@@ -39,6 +39,10 @@
           placeholder="Start work year"
         />
       </div><br/>
+      <label for="dep-select">Change the employee's department</label><br/>
+      <select id="dep-select">
+        <option value="">Select a department</option>
+      </select> <br/>
       Assign a new shift: <br/>
       <select id="shifts">
         <option value="default">Unselected</option>
@@ -64,7 +68,8 @@
       <button type="input" class="btn btn-primary" id="back">
         Cancel
       </button>
-    </div>
+    </div> <br/>
+    <div id="div-form"></div>
     <script src="../fel/loader.js"></script>
     <script src="./editEmp.js"></script>
   </body>

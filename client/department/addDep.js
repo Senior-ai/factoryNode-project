@@ -24,11 +24,36 @@ const url = 'http://localhost:4000/departments';
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(obj),
         });
-
-        const data = resp.json();
+        //When an employee is selected to be a manager, he will be automatically assigned to this dep
+        const data = await resp.json();
         console.log(data);
+        const newDepId = data._id;
         if (data)
         {
+            const emp = await fetch(`${empUrl}/${obj.managerId}`)
+            const exDepId = emp.departmentID;
+            const empObj = {
+                firstName: emp.firstName,
+                lastName: emp.lastName,
+                startWorkYear: emp.startWorkYear,
+                departmentID: newDepId
+          }
+          const empResp = await fetch(`${empUrl}/${obj.managerId}`, {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(empObj),
+          });
+          //And his previous dep will be updated
+          const exDep = await fetch(`${url}/${exDepId}`);
+          const exDepObj = {
+            name: exDep.name,
+            employees: exDep.employees
+          }
+          const depResp = await fetch(`${url}/${exDepId}`, {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(exDepObj)
+          });    
           const success = document.createElement('span');
           success.className = "badge badge-success";
           success.innerHTML = 'Successfully created!';

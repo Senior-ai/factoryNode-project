@@ -43,15 +43,18 @@
       </div><br/>
       <label for="emp-select">Add employees to the shift</label><br/>
       <select id="emp-select">
-        <option value="">Choose a new employee</option>
-      </select>
-      <br/><br/>
-      <button type="input" class="btn btn-primary" onclick="updateDep(); actionCreate()">
+        <option value="">Select an Employee</option>
+      </select> 
+      <button type="input" class="btn btn-primary" onclick="saveEmps()">Add</button>
+      <br/>
+      <span id="selectedEmps">Selected employees: </span> <br/><br/>
+      <button type="input" class="btn btn-primary" onclick="updateShift(); actionCreate()">
         Update
       </button>
       <button type="input" class="btn btn-primary" id="back">
         Cancel
-      </button>
+      </button> <br/>
+      <div id="div-form"></div>
     <script src="../fel/loader.js"></script>
     <script src="./editShift.js"></script>
     <script>

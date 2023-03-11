@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const shiftSchema = new mongoose.Schema(
   {
-    date: Date,
-    startingHour: Number,
-    endingHour: Number,
+    Date: String,
+    StartingHour: Number,
+    EndingHour: Number,
     employees: [{type: mongoose.Schema.Types.ObjectId, ref: 'employee'}],
   },
   { versionKey: false }

@@ -35,7 +35,8 @@ router.route('/:id').get(async (req, res) => {
     try {
     const obj = req.body;
     const result = await depBLL.addDepartment(obj);
-    res.json(result);
+    const depId = result.id;
+    res.json({department: result.department, depId: depId});
     } catch (error) {
       res.json(error);
     }

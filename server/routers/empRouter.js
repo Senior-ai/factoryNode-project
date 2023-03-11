@@ -34,7 +34,8 @@ router.route('/:id').get(async (req, res) => {
     try {
     const obj = req.body;
     const result = await empBLL.addEmployee(obj);
-    res.json(result);
+    const empId = result.id;
+    res.json({employee: result.employee, empId: empId});
     } catch (error) {
       res.json(error);
     }

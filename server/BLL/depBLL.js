@@ -23,8 +23,8 @@ const updateDepartment = async (id, obj) => {
 }
 const addDepartment = async (obj) => {
     const dep = new department(obj);
-    await dep.save();
-    return 'Created!';
+    const newDep = await dep.save();
+    return {id: newDep._id, department: newDep};
 }
 const deleteDepartment = async (id) => {
     await department.findByIdAndDelete(id);

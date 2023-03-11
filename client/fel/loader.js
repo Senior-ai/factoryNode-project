@@ -18,17 +18,17 @@ function userLoad() {
                 displayDialog('You were logged in for too long! Please log in if needed.');
             }
         }
-        else if (timeObj.hour > storedTimeObj.hour)
+        else if (timeObj.hour > storedTimeObj.hour || timeObj.hour + 2 < storedTimeObj.hour)
         {
+            //the second statement checks in case the user has been inactive for more than a day 
             pathChecker();
             displayDialog('You were logged in for too long! Please log in if needed.');
         }
-    }
-    
-    if (checkAction() == true)
-    {
-       pathChecker();
-       displayDialog('You have been logged out because you reached your daily limit of actions'); 
+        else if (checkAction()) {
+            console.log('IT IS TRUE')
+            pathChecker();
+            displayDialog('You have been logged out because you reached your daily limit of actions'); 
+        }
     }
     if (!window.location.href.includes("edit") &&
     !window.location.href.includes("add")) {
@@ -72,7 +72,7 @@ async function checkAction() {
     const data = await fetch(usersUrl);
     const users = await data.json();
     const user = users.filter(u => u.userId == userId);
-    if (user[0].numOfActions - 1 === 0)
+    if (user[0].numOfActions - 1 == 0)
         return true;
     else
         return false;

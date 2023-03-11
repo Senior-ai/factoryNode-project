@@ -30,22 +30,19 @@ async function addEmp() {
 
   const data = await resp.json();
   console.log(data);
-  if (data == 'Created!')
+  if (data)
   {
-    const text = document.createElement("p");
-    text.innerHTML = "Created!";
-    text.style.color = "green";
-    document.body.appendChild(text);
-    updateDep();
+    updateDep(data._id);
+    updateStatus();
   }
 }
 
-async function updateDep() {
+async function updateDep(data) {
   const depUrl = 'http://localhost:4000/departments';
   const selectedDepId = document.getElementById('deps').value;
   const selectedDepResp = await fetch (`${depUrl}/${selectedDepId}`);
   const selectedDep = await selectedDepResp.json();  
-  selectedDep.employees.push(empId);
+  selectedDep.employees.push(data); 
 
   const depResp2 = await fetch(`${depUrl}/${selectedDepId}`,{
           method: 'put',
@@ -56,3 +53,12 @@ async function updateDep() {
 document.getElementById("back").addEventListener("click", function() {
   window.history.back();
 });
+
+function updateStatus() {
+  const success = document.createElement('span');
+          success.className = "badge badge-success";
+          success.innerHTML = 'Successfully updated!';
+          const div = document.getElementById('div-form')
+          div.appendChild(success);
+          setTimeout(() => window.history.back(), 2500);
+}
