@@ -24,7 +24,7 @@ function userLoad() {
             pathChecker();
             displayDialog('You were logged in for too long! Please log in if needed.');
         }
-        else if (checkAction()) {
+        else if (checkAction() == true) {
             console.log('IT IS TRUE')
             pathChecker();
             displayDialog('You have been logged out because you reached your daily limit of actions'); 
@@ -67,7 +67,6 @@ async function actionCreate() {
 
 async function checkAction() {
     const usersUrl = 'http://localhost:4000/users/'
-
     const userId = sessionStorage.getItem("userId");
     const data = await fetch(usersUrl);
     const users = await data.json();
@@ -112,7 +111,7 @@ function setUsername() {
 function displayDialog(text) {
     // create the dialog box content
     const dialogText = document.createElement('p');
-    dialogText.innerText = 'You have been logged out due to inactivity';
+    dialogText.innerText = text;
   
     // create the dialog box container
     const dialogContainer = document.createElement('div');
